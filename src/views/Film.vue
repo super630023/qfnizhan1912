@@ -1,7 +1,6 @@
 <template>
   <div>
      111111111111
-     222222222222
     <swiper :key="looplist.length">
       <div class="swiper-slide" v-for="data in looplist" :key="data.bannerId">
         <img :src="data.imgUrl"/>
