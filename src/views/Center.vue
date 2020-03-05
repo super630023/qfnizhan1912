@@ -1,52 +1,61 @@
 <template>
   <div>
-    center
-    <van-button type="default">默认按钮</van-button>
-    <van-button type="primary">主要按钮</van-button>
-    <van-button type="info">信息按钮</van-button>
-    <van-button type="warning">警告按钮</van-button>
-    <van-button type="danger" @click="handleClick()">危险按钮</van-button>
+     <van-nav-bar title="我的" >
+      <van-icon name="ellipsis" slot="right" @click="handleisShowClick"/>
+    </van-nav-bar>
+    <van-list v-show="isShow">
+      <van-cell v-for="(item,index) in list"
+      :key="index" :title="item" @click="handeClick(index)"/>
+    </van-list>
 
-    <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
-      <van-swipe-item>1</van-swipe-item>
-      <van-swipe-item>2</van-swipe-item>
-      <van-swipe-item>3</van-swipe-item>
-      <van-swipe-item>4</van-swipe-item>
-    </van-swipe>
+    <div class="my-title">
+      <div class="header">
+        <img src="../../public/kong-pic.png" alt="">
+      </div>
+    </div>
 
-    <el-button>默认按钮</el-button>
-    <el-button type="primary">主要按钮</el-button>
-    <el-button type="success">成功按钮</el-button>
-    <el-button type="info">信息按钮</el-button>
-    <el-button type="warning">警告按钮</el-button>
-    <el-button type="danger">危险按钮</el-button>
+    <div class="container">
+      <van-divider>我的订单</van-divider>
+      <div>
+        <div class="kong-left">
+          <van-icon name="stop-circle" />
+          <p>电影</p>
+        </div>
+        <div class="kong-right">
+          <van-icon name="comment-circle" />
+          <p>商城</p>
+        </div>
+      </div>
+    </div>
 
-    <el-row>
-      <el-col :span="8"><div class="grid-content bg-purple">11111</div></el-col>
-      <el-col :span="16"><div class="grid-content bg-purple-light">22222</div></el-col>
-    </el-row>
-
-    <el-container>
-      <el-aside width="200px">Aside</el-aside>
-      <el-container>
-        <el-header>Header</el-header>
-        <el-main>Main</el-main>
-        <el-footer>Footer</el-footer>
-      </el-container>
-    </el-container>
   </div>
 </template>
 <script>
 import Vue from 'vue'
-import { Button, Swipe, SwipeItem } from 'vant'
-Vue.use(Swipe)
-Vue.use(SwipeItem)
-Vue.use(Button)
+import { NavBar, Icon, List, Divider } from 'vant'
+Vue.use(Divider)
+Vue.use(List)
+Vue.use(NavBar)
+Vue.use(Icon)
 
 export default {
+  data () {
+    return {
+      list: ['首页', '电影', '影院'],
+      isShow: false
+    }
+  },
   methods: {
-    handleClick () {
-      console.log('click-button')
+    handeClick (index) {
+      if (index === 0 || (index === 1)) {
+        this.$router.push('/Film')
+      }
+      if (index === 2) {
+        this.$router.push('/cinema')
+      }
+    },
+    handleisShowClick () {
+      this.isShow = !this.isShow
     }
   },
   // 路由的钩子函数
@@ -60,7 +69,6 @@ export default {
       next('/login')
     }
   },
-
   beforeRouteUpdate (to, from, next) {
     console.log('beforeRouteUpdate', '/detail/1111-->/detail/222222')
   },
@@ -73,12 +81,74 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-  .my-swipe .van-swipe-item {
-  color: #fff;
-  font-size: 20px;
-  line-height: 150px;
+div.van-nav-bar{
+  background-color: #df2d2d;
+    .van-nav-bar__title {
+      color: white
+    }
+    .van-icon-ellipsis{
+    color: white;
+    font-size: 35px;
+    width: 22.5px;
+  }
+}
+ .van-list{
+    position: absolute;
+    right: 0;
+    width: 90px;
+    background-color: #fff;
+    z-index: 20;
+    box-shadow: -1px 1px 3px #f0f0f0;
+    .van-cell{
+      text-align: center
+    }
+  }
+.my-title .header{
+  background-color: #f03d37;
+  height: 150px;
+  width: 100%;
+  overflow: hidden;
   text-align: center;
-  background-color: #39a9ed;
+  img{
+    display: inline-block;
+    width: 66px;
+    height:66px;
+    margin-top:30px;
+    border-radius: 50%;
+  }
+}
+.container{
+  margin-top: 10px;
+  padding: 0 15px;
+  .van-divider{
+    margin-left: 65px;
+    width: 160px;
+    font-size: 15px;
+    color: #333;
+  }
+  .kong-left{
+    width: 145px;
+    height: 92px;
+    float: left;
+    text-align: center;
+    .van-icon{
+      font-size: 40px;
+      color: #df2d2d
+    }
+  }
+  .kong-right{
+    width: 145px;
+    height: 92px;
+    float: left;
+    text-align: center;
+    .van-icon{
+      font-size: 40px;
+      color: #0df3e0
+    }
+  }
+  .van-nav-bar{
+    float: left;
+  }
 }
 
 </style>
