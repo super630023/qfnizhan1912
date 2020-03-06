@@ -1,9 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import cinema from './module/cinemaModule'
 import tabbar from './module/tabbarshowModule'
-import city from './module/cityModule'
-import createPersistedState from 'vuex-persistedstate'
 
 Vue.use(Vuex)
 
@@ -22,13 +19,7 @@ Vue.use(Vuex)
 */
 
 const store = new Vuex.Store({
-  plugins: [createPersistedState({
-    reducer (data) {
-      return {
-        city: data.city
-      }
-    }
-  })],
+
   state: {
 
   }, // "全局"状态
@@ -43,9 +34,7 @@ const store = new Vuex.Store({
   },
 
   modules: {
-    cinema,
-    tabbar,
-    city
+    tabbar
   }
 })
 export default store

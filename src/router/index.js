@@ -3,58 +3,25 @@ import VueRouter from 'vue-router' // 路由核心模块
 import Film from '@/views/Film'
 // import Cinema from '@/views/Cinema'
 import Center from '@/views/Center'
-import Detail from '@/views/Detail'
 import Login from '@/views/Login'
 import ErrorComponent from '@/views/ErrorComponent'
-import Nowplaying from '@/views/Film/Nowplaying'
-import Comingsoon from '@/views/Film/Comingsoon'
-import Search from '@/views/Search'
-import City from '@/views/City'
+
 Vue.use(VueRouter) // 注册路由插件
 // 路由映射表
 const routes = [
   {
     path: '/film',
-    component: Film,
-    children: [
-      {
-        path: '/film/nowplaying',
-        component: Nowplaying
-      },
-      {
-        path: '/film/comingsoon',
-        component: Comingsoon
-      },
-      {
-        path: '/film',
-        redirect: '/film/nowplaying'
-      }
-    ]
+    component: Film
   },
-  // {
-  //   path: '/film/nowplaying',
-  //   component: Nowplaying
-  // },
   {
     path: '/cinema',
     // component: Cinema
     component: () => import(/* webpackChunkName:'kerwincinema' */'@/views/Cinema') // webpack 代码分割
   },
-  {
-    path: '/cinema/search',
-    component: Search
-  },
+
   {
     path: '/center',
     component: Center
-  },
-  {
-    path: '/city',
-    component: City
-  },
-  {
-    path: '/detail/:kerwinid', // kerwinid
-    component: Detail
   },
   {
     path: '/login',
