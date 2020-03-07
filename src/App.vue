@@ -32,10 +32,6 @@ export default {
     list-style:none;
   }
 
-  html{
-    // touch-action: none;
-  }
-
   .app-enter-active {
     animation: aaa .5s;
   }

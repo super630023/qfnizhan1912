@@ -1,11 +1,6 @@
 <template>
   <nav>
-    <!-- <ul>
-      <router-link :to="navlist[0]" tag="li" activeClass="kerwinactive">电影</router-link>
-      <router-link :to="navlist[1]" tag="li" activeClass="kerwinactive">影院</router-link>
-      <router-link :to="navlist[2]" tag="li" activeClass="kerwinactive">我的</router-link>
-    </ul> -->
-    <!-- 作业1 - v-for -->
+
     <ul>
       <router-link tag="li" :to="data.path" v-for="data in navlist"
       :key="data.text" activeClass="kerwinactive">

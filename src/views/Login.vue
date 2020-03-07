@@ -33,7 +33,6 @@
           v-model="value"
           center
           clearable
-          name="validator"
           placeholder="请输入手机码">
           <van-button
           slot="button"
@@ -85,16 +84,15 @@ export default {
 
   methods: {
     handleyanClick () {
-      if (this.value === (/^1[3-9]\d{9}$/)) {
+      var reg = /^1[3|4|5|7|8][0-9]{9}$/
+      if (reg.test(this.value)) {
         this.smg = '123456'
+        this.username = ''
+        this.password = ''
       } else {
         alert('输入错误')
         return false
       }
-    },
-
-    validator () {
-      return /^1[3-9]\d{9}$/
     },
     onClickLeft () {
       Toast('返回')
@@ -105,7 +103,13 @@ export default {
       console.log('submit', values)
     },
     handleClick () {
-      if (this.value === (/^1[3-9]\d{9}$/)) {
+      var reg = /^1[3|4|5|7|8][0-9]{9}$/
+      if (reg.test(this.value)) {
+        localStorage.setItem('token', JSON.stringify({ isLogin: true }))
+        this.$router.push('/center')
+        return
+      }
+      if (this.username === ('123456') || this.password === ('123456')) {
         localStorage.setItem('token', JSON.stringify({ isLogin: true }))
         this.$router.push('/center')
       } else {

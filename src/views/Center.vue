@@ -1,6 +1,6 @@
 <template>
-  <div>
-     <van-nav-bar title="我的" >
+  <div id="head">
+    <van-nav-bar title="我的" >
       <van-icon name="ellipsis" slot="right" @click="handleisShowClick"/>
     </van-nav-bar>
     <van-list v-show="isShow">
@@ -15,24 +15,41 @@
     </div>
 
     <div class="container">
-      <van-divider>我的订单</van-divider>
+      <van-divider id="kong-text">我的订单</van-divider>
       <div>
-        <div class="kong-left">
-          <van-icon name="stop-circle" />
-          <p>电影</p>
-        </div>
-        <div class="kong-right">
-          <van-icon name="comment-circle" />
-          <p>商城</p>
-        </div>
+        <van-grid :column-num="2">
+          <van-grid-item
+            text="电影"
+            icon="stop-circle"
+            @click="huanclick"
+          />
+           <van-grid-item
+            text="商城"
+            icon="comment-circle"
+            @click="huanshopping"
+          />
+        </van-grid>
       </div>
+    </div>
+
+    <div @click="handleclick()">
+      <van-nav-bar left-text="优惠券" id="active" >
+        <van-icon name="arrow" slot="right" id="kong-icon-right"/>
+      </van-nav-bar>
+    </div>
+    <div>
+      <van-nav-bar left-text="折扣卡" id="active">
+        <van-icon name="arrow" slot="right" id="kong-icon-right"/>
+      </van-nav-bar>
     </div>
 
   </div>
 </template>
 <script>
 import Vue from 'vue'
-import { NavBar, Icon, List, Divider } from 'vant'
+import { NavBar, Icon, List, Divider, Grid, GridItem } from 'vant'
+Vue.use(Grid)
+Vue.use(GridItem)
 Vue.use(Divider)
 Vue.use(List)
 Vue.use(NavBar)
@@ -46,12 +63,21 @@ export default {
     }
   },
   methods: {
+    huanshopping () {
+      this.$router.push('/show')
+    },
+    huanclick () {
+      this.$router.push('/film')
+    },
+    handleclick () {
+      this.$router.push('/mycoupon')
+    },
     handeClick (index) {
       if (index === 0 || (index === 1)) {
         this.$router.push('/Film')
       }
       if (index === 2) {
-        this.$router.push('/cinema')
+        this.$router.push('/Cinema')
       }
     },
     handleisShowClick () {
@@ -81,6 +107,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+
 div.van-nav-bar{
   background-color: #df2d2d;
     .van-nav-bar__title {
@@ -118,37 +145,34 @@ div.van-nav-bar{
   }
 }
 .container{
-  margin-top: 10px;
-  padding: 0 15px;
+  margin: 13px 0;
+  #kong-text{
+    margin-bottom: 13px;
+  }
   .van-divider{
-    margin-left: 65px;
+    margin: 0 auto;
     width: 160px;
     font-size: 15px;
     color: #333;
   }
-  .kong-left{
-    width: 145px;
-    height: 92px;
-    float: left;
-    text-align: center;
-    .van-icon{
-      font-size: 40px;
-      color: #df2d2d
-    }
+  .van-grid {
+    border: 0;
   }
-  .kong-right{
-    width: 145px;
-    height: 92px;
-    float: left;
-    text-align: center;
-    .van-icon{
-      font-size: 40px;
-      color: #0df3e0
-    }
-  }
-  .van-nav-bar{
-    float: left;
+ .van-grid .van-grid-item:first-child{
+    color: #df2d2d;
+ }
+
+ .van-grid .van-grid-item:last-child{
+    color: #0df3e0;
+ }
+}
+#active{
+  background-color: #fff;
+  .van-nav-bar__text{
+    color: #333;
   }
 }
-
+  #kong-icon-right{
+  color: #ccc;
+}
 </style>

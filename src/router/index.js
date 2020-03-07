@@ -1,9 +1,16 @@
+/*
+  author:kerwin
+  aaaa:111
+*/
+
 import Vue from 'vue'
 import VueRouter from 'vue-router' // 路由核心模块
 import Film from '@/views/Film'
 // import Cinema from '@/views/Cinema'
 import Center from '@/views/Center'
 import Login from '@/views/Login'
+import Show from '@/views/Show'
+import Mycoupon from '@/views/Mycoupon'
 import ErrorComponent from '@/views/ErrorComponent'
 
 Vue.use(VueRouter) // 注册路由插件
@@ -18,7 +25,14 @@ const routes = [
     // component: Cinema
     component: () => import(/* webpackChunkName:'kerwincinema' */'@/views/Cinema') // webpack 代码分割
   },
-
+  {
+    path: '/mycoupon',
+    component: Mycoupon
+  },
+  {
+    path: '/show',
+    component: Show
+  },
   {
     path: '/center',
     component: Center
@@ -38,7 +52,9 @@ const routes = [
   }
 
 ]
+// tie'chui -11111111111111
 
+// kerwin 代码-1111111111111
 const router = new VueRouter({
   mode: 'hash', // history  hash
   routes
