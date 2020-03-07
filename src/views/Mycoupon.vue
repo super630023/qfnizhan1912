@@ -6,24 +6,65 @@
         <van-list v-show="isShow">
             <van-cell v-for="(item,index) in list" :key="index" :title="item" @click="handeClick(index)"/>
         </van-list>
+
+      <!-- 优惠券列表 -->
+
+        <van-coupon-list
+          :coupons="coupons"
+          :chosen-coupon="chosenCoupon"
+          :disabled-coupons="disabledCoupons"
+          @change="onChange"
+          @exchange="onExchange"
+        />
+
     </div>
 </template>
 <script>
 import Vue from 'vue'
-import { NavBar, Icon, List, Toast } from 'vant'
+import { mapMutations } from 'vuex'
+import { NavBar, Icon, List, Toast, CouponCell, CouponList } from 'vant'
+
+Vue.use(CouponCell)
+Vue.use(CouponList)
 Vue.use(Toast)
 Vue.use(List)
 Vue.use(NavBar)
 Vue.use(Icon)
+
+const coupon = {
+  available: 1,
+  condition: '无使用门槛\n最多优惠12元',
+  reason: '',
+  value: 150,
+  name: '优惠券名称',
+  startAt: 1489104000,
+  endAt: 1514592000,
+  valueDesc: '1.5',
+  unitDesc: '元'
+}
 export default {
 
   data () {
     return {
       list: ['首页', '电影', '影院'],
-      isShow: false
+      isShow: false,
+      chosenCoupon: -1,
+      coupons: [coupon],
+      disabledCoupons: [coupon]
     }
   },
+  mounted () {
+    this.hide()
+  },
   methods: {
+    onChange (index) {
+      this.showList = false
+      this.chosenCoupon = index
+    },
+    onExchange (code) {
+      this.coupons.push(coupon)
+    },
+    ...mapMutations('tabbar', ['hide']),
     onClickLeft () {
       Toast('返回')
       this.$router.back()

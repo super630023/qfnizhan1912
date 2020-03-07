@@ -19,17 +19,17 @@ export default {
       navlist: [
         {
           path: '/film',
-          text: '电影1',
+          text: '电影',
           icon: 'icon-all'
         },
         {
           path: '/cinema',
-          text: '影院1',
+          text: '影院',
           icon: 'icon-category'
         },
         {
           path: '/center',
-          text: '我的1',
+          text: '我的',
           icon: 'icon-account'
         }
       ]

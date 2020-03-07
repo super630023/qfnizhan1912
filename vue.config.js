@@ -5,17 +5,8 @@ module.exports = {
       errors: false
     },
     proxy: {
-      '/kerwin': {
-        target: 'http://m.maoyan.com',
-        changeOrigin: true,
-        pathRewrite: {
-          '^/kerwin': ''
-        }
-
-        /* /kerwin/ajax/comingList  ====> /ajax/comingList  */
-      },
       '/ajax': {
-        target: 'http://m1.a.com',
+        target: 'http://m.maoyan.com',
         changeOrigin: true
       }
     }

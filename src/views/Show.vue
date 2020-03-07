@@ -45,7 +45,8 @@
 <script>
 import Vue from 'vue'
 import axios from 'axios'
-import { NavBar, Toast, Col, Row } from 'vant'
+import { NavBar, Toast, Col, Row, Icon } from 'vant'
+Vue.use(Icon)
 Vue.use(Col)
 Vue.use(Row)
 Vue.use(NavBar)
@@ -81,8 +82,8 @@ export default {
     }
   },
   mounted () {
-    axios.get('/kerwin/ajax/cinemaDetail?cinemaId=232&optimus_uuid=650959A05E8E11EA86368DE7C885C7A019C2EFB8D33D436A8FA7FD77D18243D4&optimus_risk_level=71&optimus_code=10').then(res => {
-      console.log(res.data.dealList.dealList)
+    axios.get('/ajax/cinemaDetail?cinemaId=232&optimus_uuid=650959A05E8E11EA86368DE7C885C7A019C2EFB8D33D436A8FA7FD77D18243D4&optimus_risk_level=71&optimus_code=10').then(res => {
+      console.log(res.data)
       this.nav = res.data.cinemaData
       this.datalist = res.data.dealList.dealList
     })
