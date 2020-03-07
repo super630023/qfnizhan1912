@@ -1,11 +1,5 @@
 <template>
   <nav>
-    <!-- <ul>
-      <router-link :to="navlist[0]" tag="li" activeClass="kerwinactive">电影</router-link>
-      <router-link :to="navlist[1]" tag="li" activeClass="kerwinactive">影院</router-link>
-      <router-link :to="navlist[2]" tag="li" activeClass="kerwinactive">我的</router-link>
-    </ul> -->
-    <!-- 作业1 - v-for -->
     <ul>
       <router-link tag="li" :to="data.path" v-for="data in navlist"
       :key="data.text" activeClass="kerwinactive">
@@ -17,24 +11,23 @@
 </template>
 <script>
 export default {
-  // a 声明式 导航
-  // location.href 编程式导航
+
   data () {
     return {
       navlist: [
         {
           path: '/film',
-          text: '电影1',
+          text: '电影',
           icon: 'icon-all'
         },
         {
           path: '/cinema',
-          text: '影院1',
+          text: '影院',
           icon: 'icon-category'
         },
         {
           path: '/center',
-          text: '我的1',
+          text: '我的',
           icon: 'icon-account'
         }
       ]

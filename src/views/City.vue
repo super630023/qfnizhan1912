@@ -1,8 +1,8 @@
 <template>
   <div>
-    <van-index-bar :index-list="indexList">
-      <div v-for="(data,index) in datalist" :key="index">
-        <van-index-anchor :index="data.index">{{data.index}}</van-index-anchor>
+    <van-index-bar :index-list="indexList" id="aaa">
+      <div v-for="(data,index) in datalist" :key="index" >
+        <van-index-anchor :index="data.index" >{{data.index}}</van-index-anchor>
         <van-cell :title="item.name" v-for="(item,index) in data.list" :key="index" @click="handleClick(item)"/>
       </div>
     </van-index-bar>
@@ -36,17 +36,15 @@ export default {
   },
   methods: {
     dataFilter (cities) {
-      // var arr =["A","B","C","D","E"]
       var letterArr = []
       for (var i = 65; i < 91; i++) {
         letterArr.push(String.fromCharCode(i))
       }
-      console.log(letterArr)
+      // console.log(letterArr)
 
       // filter 遍历26个字母， 跟cities数据.pinyin.首字母.大写 进行过滤
       var cityArr = []
       for (var j = 0; j < letterArr.length; j++) {
-        // console.log()
         var temparr = cities.filter(item => item.pinyin.substring(0, 1).toUpperCase() === letterArr[j])
         // 收集datalist数据
         temparr.length && cityArr.push({
@@ -60,22 +58,22 @@ export default {
 
       this.datalist = cityArr
     },
-    // 点击城市处理函数
-    handleClick (item) {
-      // console.log("1111111")
 
+    handleClick (item) {
       // 修改vuex 共享的 城市数据
       this.setCityName(item.name)
       this.setCityId(item.cityId)
-
-      // localStoreage
-      // localStorage.setItem("cityId",item.cityId)
-      // localStorage.setItem("cityName",item.name)
-
       this.$router.back()
     },
 
-    ...mapMutations('city', ['setCityName', 'setCityId']) // city命名空间中，取出setCityName
+    ...mapMutations('city', ['setCityName', 'setCityId'])
   }
 }
 </script>
+<style lang="scss">
+#aaa{
+  .van-index-bar__index{
+      margin-top: 10px;
+  }
+}
+</style>

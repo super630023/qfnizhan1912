@@ -1,14 +1,14 @@
 <template>
   <div>
     <div class="title">
-        <div class="left" @click="handleChangePage('/city')">{{cityName}}</div>
-        <div>影院</div>
-        <div class="right" ><i class="iconfont icon-search" @click="handleChangePage('/cinema/search')"></i></div>
+        <div class="left" @click="handleChangePage('/city')" style="margin-left:10px">{{cityName}}</div>
+        <div >影院</div>
+        <div class="right" ><i class="iconfont icon-search" @click="handleChangePage('/cinema/search')" style="margin-right:10px"></i></div>
     </div>
 
     <div class="select">
-        <div @click="isAreaShow=!isAreaShow" :class="isAreaShow?'active':''">{{current}}</div>
-        <div class="select1" @click="isAreaShow1=!isAreaShow1" :class="isAreaShow1?'active':''">{{brand}}</div>
+        <div @click="isAreaShow=!isAreaShow;isAreaShow1=false" :class="isAreaShow?'active':''">{{current}}</div>
+        <div class="select1" @click="isAreaShow1=!isAreaShow1;isAreaShow=false" :class="isAreaShow1?'active':''">{{brand}}</div>
         <div>特色</div>
     </div>
 
@@ -56,7 +56,7 @@ export default {
       // datalist:[],
       isAreaShow: false,
       isAreaShow1: false,
-      current: '全城', // 选中是哪个区
+      current: '全城',
       brand: '品牌',
       scrollHeight: '0px'
     }
@@ -79,7 +79,7 @@ export default {
       new BetterScroll('.content', {//eslint-disable-line
       scrollbar: {
         fade: true,
-        interactive: false // 1.8.0 新增
+        interactive: false
       },
       click: true // 支持click事件
     })
@@ -87,23 +87,21 @@ export default {
     // disptch 到 vuex中action
     if (this.cinemaList.length === 0) {
       this.$store.dispatch('cinema/getCinemaAction', this.cityId).then(res => {
-        console.log('异步结束，已经存到vuex')
+        // console.log('异步结束，已经存到vuex')
         Toast.clear()
       })
     } else {
-      console.log('cinema', '使用缓存')
+      // console.log('cinema', '使用缓存')
       Toast.clear()
     }
     this.$store.dispatch('cinema/getCityAction')
   },
   methods: {
     handleArea (data) {
-      // 改变current值， current值改变， 计算属性自动计算一遍
       this.current = data.name
       this.isAreaShow = false
     },
     handleArea1 (data) {
-      // 改变current值， current值改变， 计算属性自动计算一遍
       this.brand = data.name
       this.isAreaShow1 = false
     },
@@ -112,11 +110,12 @@ export default {
         // 清空共享状态 vuex cinemaList
         this.setCinemaList([])
       }
-      this.$router.push(path) // 跳转路径
+      this.$router.push(path)
     },
 
     handleClick (id) {
-      console.log(id)
+      // console.log(id)
+      this.$router.push(`/show/${id}`)
     },
 
     ...mapMutations('cinema', ['setCinemaList', 'setCityList'])
@@ -125,23 +124,20 @@ export default {
   computed: {
     ...mapState('cinema', ['cinemaList', 'cityList']),
     ...mapState('city', ['cityName', 'cityId']),
-    // 所有区的计算属性
 
     arealist () {
-      // 对象=>里面的某个属性
       var newarr = this.cityList[0]
-      // 利用set结构进行数组去重，Array.from 把类数组结构转换成数组结构
+
       var arealist = [...Array.from(new Set(newarr))]
       return arealist
     },
     arealist1 () {
-      // 对象=>里面的某个属性
       var newarr1 = this.cityList[1]
-      // 利用set结构进行数组去重，Array.from 把类数组结构转换成数组结构
+
       var arealist1 = [...Array.from(new Set(newarr1))]
       return arealist1
     },
-    // 根据选择的不同区域，过滤出相应区域的影院
+
     computedDatalist () {
       if ((this.current === '全城' || this.current === '全部') && (this.brand === '品牌' || this.brand === '全部')) return this.cinemaList
 
@@ -172,8 +168,10 @@ export default {
     width: 100%;
     height: 40px;
     line-height: 40px;
-    background: white;
+    background: #df2d2d;
     z-index:10;
+    font-weight:bold;
+    color: white;
     div{
       flex:1;
       text-align: center;
@@ -233,6 +231,7 @@ export default {
     ul{
       display: flex;
       flex-wrap: wrap;
+      z-index:10;
       li{
         width: 25%;
         padding:5px;

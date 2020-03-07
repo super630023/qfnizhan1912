@@ -9,9 +9,7 @@
         />
       <div v-show="mytext">
         <ul v-if="searchDataList.length">
-          <!-- <li >
-              {{data.name}}
-          </li> -->
+
           <cinema-item v-for="data in searchDataList" :key="data.id"
           :data="data"></cinema-item>
         </ul>
@@ -20,14 +18,6 @@
         </div>
       </div>
     </div>
-
-    <!-- <div class="distance" >
-      <ul>
-         <li v-for="" :key="index">
-           {{data.name}}
-         </li>
-      </ul>
-    </div> -->
 
     <van-list v-show="!mytext">
         <van-cell v-for="(data, index) in topDataList" :key="index" :title="data.nm" />
@@ -59,12 +49,8 @@ export default {
     }
   },
   mounted () {
-    // this.$store.state.isTabbarShow = false
-
-    // 同步状态 -提交到mutation
-    // this.$store.commit("tabbar/hide")
     this.hide()
-    // 异步请求
+
     if (this.cinemaList.length === 0) {
       this.getCinemaAction()
     } else {
@@ -85,10 +71,6 @@ export default {
   },
 
   destroyed () {
-    // console.log("destroyed")
-    // this.$store.state.isTabbarShow = true
-
-    // this.$store.commit("tabbar/show")
     this.show()
   }
 }

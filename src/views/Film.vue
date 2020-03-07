@@ -8,7 +8,7 @@
     <div>
       导航栏
     </div>
-    <!-- 路由容器 -->
+
     <router-view></router-view>
   </div>
 </template>
@@ -23,7 +23,7 @@ export default {
     }
   },
   components: {
-    swiper // 局部注册swiper组件
+    swiper
   },
   computed: {
     ...mapState('city', ['cityId'])
@@ -35,13 +35,8 @@ export default {
         'X-Host': 'mall.cfg.common-banner'
       }
     }).then(res => {
-      console.log(res.data)
-      // var obj = {
-      //   bannerId:22222222222,
-      //   imgUrl:"https://static.maizuo.com/pc/v5/usr/movie/f046c5d6b2c397a8194ab14dc439d7dd.jpg"
-      // }
-      // this.looplist = [...res.data.data,obj]
-      // console.log(this.looplist)
+      // console.log(res.data)
+
       if (res.data.data) {
         this.looplist = res.data.data
       }

@@ -15,7 +15,7 @@ export default {
 
   methods: {
     handleClick (index) {
-      console.log(index)
+      // console.log(index)
       this.$emit('event', index)
     }
   }

@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import cinema from './module/cinemaModule'
 import tabbar from './module/tabbarshowModule'
 import city from './module/cityModule'
+import shop from './module/shopModule'
 import createPersistedState from 'vuex-persistedstate'
 
 Vue.use(Vuex)
@@ -45,7 +46,8 @@ const store = new Vuex.Store({
   modules: {
     cinema,
     tabbar,
-    city
+    city,
+    shop
   }
 })
 export default store

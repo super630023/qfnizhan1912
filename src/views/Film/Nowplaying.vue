@@ -35,13 +35,11 @@ export default {
   },
   methods: {
     handleClick (id) {
-      // console.log()
-      // 作业3 自己创建detail组件， 配置好路由，跳转detail
       this.$router.push(`/detail/${id}`) // 切换页面
     }
   }
 }
-// 作业4 调研: 如何实现重定向？ 如何带着参数跳转到detail页面？
+
 </script>
 <style lang="scss" scoped>
 li{

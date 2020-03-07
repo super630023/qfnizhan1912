@@ -1,7 +1,6 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router' // 路由核心模块
+import VueRouter from 'vue-router'
 import Film from '@/views/Film'
-// import Cinema from '@/views/Cinema'
 import Center from '@/views/Center'
 import Detail from '@/views/Detail'
 import Login from '@/views/Login'
@@ -10,8 +9,9 @@ import Nowplaying from '@/views/Film/Nowplaying'
 import Comingsoon from '@/views/Film/Comingsoon'
 import Search from '@/views/Search'
 import City from '@/views/City'
-Vue.use(VueRouter) // 注册路由插件
-// 路由映射表
+import Show from '@/views/Show'
+import Mycoupon from '@/views/Mycoupon'
+Vue.use(VueRouter)
 const routes = [
   {
     path: '/film',
@@ -31,13 +31,9 @@ const routes = [
       }
     ]
   },
-  // {
-  //   path: '/film/nowplaying',
-  //   component: Nowplaying
-  // },
   {
     path: '/cinema',
-    // component: Cinema
+
     component: () => import(/* webpackChunkName:'kerwincinema' */'@/views/Cinema') // webpack 代码分割
   },
   {
@@ -49,11 +45,19 @@ const routes = [
     component: Center
   },
   {
+    path: '/show/:kerwinid',
+    component: Show
+  },
+  {
     path: '/city',
     component: City
   },
   {
-    path: '/detail/:kerwinid', // kerwinid
+    path: '/mycoupon',
+    component: Mycoupon
+  },
+  {
+    path: '/detail/:kerwinid',
     component: Detail
   },
   {
@@ -62,7 +66,7 @@ const routes = [
   },
   {
     path: '/',
-    redirect: '/film' // 重定向
+    redirect: '/film'
   },
 
   {
@@ -73,7 +77,7 @@ const routes = [
 ]
 
 const router = new VueRouter({
-  mode: 'hash', // history  hash
+  mode: 'hash',
   routes
 })
 

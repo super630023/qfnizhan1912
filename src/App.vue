@@ -1,7 +1,7 @@
 <template>
   <div>
     <tabbar v-show="isTabbarShow"></tabbar>
-    <!-- 路由容器(基于slot封装) -->
+
     <transition name="app" mode="out-in">
         <router-view></router-view>
     </transition>
@@ -15,7 +15,7 @@ export default {
     console.log(this.isTabbarShow)
   },
   computed: {
-    // 从tabbar命名空间中直接找 isTabbarShow
+
     ...mapState('tabbar', ['isTabbarShow'])
   },
   components: {

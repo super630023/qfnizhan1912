@@ -1,13 +1,9 @@
 <template>
   <div v-if="filminfo" class="detail">
-    <!-- <div class="detailtitle" v-title="40">
-      <i class="iconfont icon-back" @click="handleBack()"></i>
-      <span>{{filminfo.name}}</span>
-    </div> -->
+
     <m-title v-title="40" @back="handleBack">
       {{filminfo.name}}
     </m-title>
-    <!-- m-title， back 事件，  -->
 
     <img :src="filminfo.poster"/>
     <h4>{{filminfo.name}}{{filminfo.filmType.name}}</h4>
@@ -55,9 +51,7 @@ import { ImagePreview, Dialog } from 'vant'
 Vue.use(ImagePreview).use(Dialog)
 
 export default {
-  // filters:{
-  //   //局部
-  // },
+
   data () {
     return {
       filminfo: null,
@@ -72,8 +66,7 @@ export default {
   },
   methods: {
     handleBack () {
-      // this.$router.push("/det")
-      this.$router.back() // 返回功能
+      this.$router.back()
     },
     handlePhotoShow () {
       this.isPhotoShow = false
@@ -81,11 +74,11 @@ export default {
     handlePreview (index) {
       ImagePreview({
         images: this.filminfo.photos,
-        startPosition: index, // 从0
+        startPosition: index,
         closeable: true,
         closeIconPosition: 'top-left',
         onClose () {
-          // do something
+
         }
       })
     }
@@ -97,16 +90,13 @@ export default {
       confirmButtonText: '同意',
       cancelButtonText: '拒绝'
     }).then(() => {
-      // on confirm
       this.$router.back()
     }).catch(() => {
-      // on cancel
+
     })
   },
   mounted () {
-    // this.$router //路由对象
-    // this.$route 当前唯一匹配的路由对象
-    console.log(this.$route.params.kerwinid, '利用id去请求接口数据')
+    // console.log(this.$route.params.kerwinid, '利用id去请求接口数据')
 
     http.request({
       url: `/gateway?filmId=${this.$route.params.kerwinid}&k=893882`,
@@ -114,7 +104,7 @@ export default {
         'X-Host': 'mall.film-ticket.film.info'
       }
     }).then(res => {
-      console.log(res.data)
+      // console.log(res.data)
       this.filminfo = res.data.data.film
     })
   }
