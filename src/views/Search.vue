@@ -12,7 +12,7 @@
           <!-- <li >
               {{data.name}}
           </li> -->
-          <cinema-item v-for="data in searchDataList" :key="data.cinemaId"
+          <cinema-item v-for="data in searchDataList" :key="data.id"
           :data="data"></cinema-item>
         </ul>
         <div v-else>
@@ -30,7 +30,7 @@
     </div> -->
 
     <van-list v-show="!mytext">
-        <van-cell v-for="(data, index) in topDataList" :key="index" :title="data.name" />
+        <van-cell v-for="(data, index) in topDataList" :key="index" :title="data.nm" />
     </van-list>
   </div>
 </template>
@@ -69,6 +69,7 @@ export default {
       this.getCinemaAction()
     } else {
       console.log('search', '使用缓存')
+      console.log(this.searchDataList)
     }
   },
 
@@ -79,8 +80,7 @@ export default {
       return this.cinemaList.slice(0, 5)
     },
     searchDataList () {
-      return this.cinemaList.filter(item => item.name.includes(this.mytext) || item.name.toUpperCase().includes(this.mytext) ||
-      item.name.toLowerCase().includes(this.mytext))
+      return this.cinemaList.filter(item => item.nm.includes(this.mytext))
     }
   },
 

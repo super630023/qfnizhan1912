@@ -1,29 +1,33 @@
-import http from '@/util/http'
+import axios from 'axios'
 
 const module = {
   namespaced: true, // 命名空间
   state: {
-    cinemaList: []
+    cinemaList: [],
+    cityList: []
   },
   actions: {
-    getCinemaAction (store, id) {
-      http.request({
-        url: `/gateway?cityId=${id}&ticketFlag=1&k=6798623`,
-        headers: {
-          'X-Host': 'mall.film-ticket.cinema.list'
-        }
-      }).then(res => {
-        console.log('影院', res.data)
-        store.commit('setCinemaList', res.data.data.cinemas) // 支持传参
-        // this.arealist =......
+    getCinemaAction (store) {
+      axios.get('/ajax/cinemaList?day=2020-03-05&offset=0&limit=5000&districtId=-1&lineId=-1&hallType=-1&brandId=-1&serviceId=-1&areaId=-1&stationId=-1&item=&updateShowDay=true&reqId=1583341086597&cityId=10&optimus_uuid=C71F30C05D4811EA955213B16E54E79E40FAB32AD7FC457EA198380F39DC7547&optimus_risk_level=71&optimus_code=10').then(res => {
+        console.log(res.data.cinemas)
+        store.commit('setCinemaList', res.data.cinemas) // 支持传参
+      })
+    },
+    getCityAction (store) {
+      axios.get('/ajax/filterCinemas?ci=10&optimus_uuid=C71F30C05D4811EA955213B16E54E79E40FAB32AD7FC457EA198380F39DC7547&optimus_risk_level=71&optimus_code=10').then(res => {
+        console.log(res.data.district.subItems)
+        store.commit('setCityList', [res.data.district.subItems, res.data.brand.subItems])
       })
     }
-
   },
   mutations: {
     setCinemaList (state, data) {
-      console.log('setCinemaList', data)
+      console.log('setcinemaList', data)
       state.cinemaList = data
+    },
+    setCityList (state, data) {
+      console.log('setcityList', data)
+      state.cityList = data
     }
 
   },

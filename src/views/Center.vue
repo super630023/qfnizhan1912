@@ -39,14 +39,24 @@
 <script>
 import Vue from 'vue'
 import { Button, Swipe, SwipeItem } from 'vant'
+import axios from 'axios'
 Vue.use(Swipe)
 Vue.use(SwipeItem)
 Vue.use(Button)
 
 export default {
+  mounted () {
+    axios.get('/ajax/filterCinemas?ci=10&optimus_uuid=C71F30C05D4811EA955213B16E54E79E40FAB32AD7FC457EA198380F39DC7547&optimus_risk_level=71&optimus_code=10').then(res => {
+      console.log(res.data)
+    })
+  },
   methods: {
     handleClick () {
       console.log('click-button')
+      var date = new Date(1583343910752)
+      // 格式化日期
+      var dateTime = date.toLocaleString()
+      console.log(dateTime)
     }
   },
   // 路由的钩子函数

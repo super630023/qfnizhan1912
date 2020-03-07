@@ -1,8 +1,7 @@
 <template>
   <li>
-    dj1111111111111
-    <h4>{{data.name}}</h4>
-    <p>{{data.address}}</p>
+    <h4 style="width:300px">{{data.nm}}</h4>
+    <p style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:13px">{{data.addr}}</p>
   </li>
 </template>
 <script>
