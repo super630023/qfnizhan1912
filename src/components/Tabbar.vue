@@ -18,7 +18,7 @@ export default {
         {
           path: '/film',
           text: '电影',
-          icon: 'icon-all'
+          icon: 'icon-video'
         },
         {
           path: '/cinema',
@@ -56,6 +56,10 @@ export default {
         text-align: center;
         display: flex;
         flex-direction: column;
+        i{
+          font-size: 20px !important;
+
+        }
       }
     }
   }

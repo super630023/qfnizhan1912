@@ -7,8 +7,8 @@
     </div>
 
     <div class="select">
-        <div @click="isAreaShow=!isAreaShow;isAreaShow1=false" :class="isAreaShow?'active':''">{{current}}</div>
-        <div class="select1" @click="isAreaShow1=!isAreaShow1;isAreaShow=false" :class="isAreaShow1?'active':''">{{brand}}</div>
+        <div @click="isAreaShow=!isAreaShow;isAreaShow1=false" :class="isAreaShow?'active':''">{{current}}<i class="iconfont icon-moreunfold"></i></div>
+        <div class="select1" @click="isAreaShow1=!isAreaShow1;isAreaShow=false" :class="isAreaShow1?'active':''">{{brand}}<i class="iconfont icon-moreunfold"></i></div>
         <div>特色</div>
     </div>
 
@@ -198,6 +198,11 @@ export default {
     div{
       flex:1;
       text-align: center;
+      i{
+        margin-left: 7px;
+        font-size: 12px;
+        font-weight: bold;
+      }
     }
     .select1{
       border-left: 1px solid red;
