@@ -2,7 +2,6 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Film from '@/views/Film'
 import Center from '@/views/Center'
-import Detail from '@/views/Detail'
 import Login from '@/views/Login'
 import ErrorComponent from '@/views/ErrorComponent'
 import Nowplaying from '@/views/Film/Nowplaying'
@@ -55,10 +54,6 @@ const routes = [
   {
     path: '/mycoupon',
     component: Mycoupon
-  },
-  {
-    path: '/detail/:kerwinid',
-    component: Detail
   },
   {
     path: '/login',
