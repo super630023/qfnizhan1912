@@ -12,7 +12,7 @@ import tabbar from '@/components/Tabbar'
 import { mapState } from 'vuex'
 export default {
   mounted () {
-    console.log(this.isTabbarShow)
+
   },
   computed: {
 

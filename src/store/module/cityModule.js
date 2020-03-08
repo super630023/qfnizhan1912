@@ -1,8 +1,8 @@
 const module = {
   namespaced: true,
   state: {
-    cityName: '北京',
-    cityId: '110100'
+    cityName: '上海',
+    cityId: '310100'
   },
   actions: {
 

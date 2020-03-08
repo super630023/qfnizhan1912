@@ -30,7 +30,8 @@
       </ul>
     </div>
 
-    <div class="content"  :class="isAreaShow||isAreaShow1?'active1':''" :style="{height:scrollHeight} ">
+    <!-- <div class="content"  :class="isAreaShow||isAreaShow1?'active1':''" :style="{height:scrollHeight} "> -->
+    <div class="content"  :class="isAreaShow||isAreaShow1?'active1':''">
         <ul v-if="computedDatalist.length">
           <cinema-item v-for="data in computedDatalist" :key="data.cinemaId"
           :data="data" @click.native="handleClick(data.id)"
@@ -47,7 +48,7 @@ import cinemaItem from './Cinema/CinemaItem'
 import { mapState, mapMutations } from 'vuex' // mapState 是vuex提供的切割函数，
 import Vue from 'vue'
 import { Toast } from 'vant'
-import BetterScroll from 'better-scroll'
+// import BetterScroll from 'better-scroll'
 Vue.use(Toast)
 
 export default {
@@ -57,8 +58,8 @@ export default {
       isAreaShow: false,
       isAreaShow1: false,
       current: '全城',
-      brand: '品牌',
-      scrollHeight: '0px'
+      brand: '品牌'
+      // scrollHeight: '0px'
     }
   },
   components: {
@@ -74,24 +75,24 @@ export default {
     })
   },
   mounted () {
-    this.scrollHeight = document.documentElement.clientHeight - 80 - 50 + 'px'
-    // 初始化betterscroll
-      new BetterScroll('.content', {//eslint-disable-line
-      scrollbar: {
-        fade: true,
-        interactive: false
-      },
-      click: true // 支持click事件
-    })
+    // this.scrollHeight = document.documentElement.clientHeight - 80 - 50 + 'px'
+    // // 初始化betterscroll
+    //   new BetterScroll('.content', {//eslint-disable-line
+    //   scrollbar: {
+    //     fade: true,
+    //     interactive: false
+    //   },
+    //   click: true // 支持click事件
+    // })
 
     // disptch 到 vuex中action
     if (this.cinemaList.length === 0) {
-      this.$store.dispatch('cinema/getCinemaAction', this.cityId).then(res => {
-        // console.log('异步结束，已经存到vuex')
-        Toast.clear()
-      })
+      this.$store.dispatch('cinema/getCinemaAction')
+      console.log('异步结束，已经存到vuex')
+      console.log(this.cinemaList)
+      Toast.clear()
     } else {
-      // console.log('cinema', '使用缓存')
+      console.log('cinema', '使用缓存')
       Toast.clear()
     }
     this.$store.dispatch('cinema/getCityAction')
@@ -209,8 +210,8 @@ export default {
   .content{
     position: relative;
     top:80px;
-    height:300px;
-    overflow:hidden;
+    // height:300px;
+    // overflow:hidden;
     div{
       margin-top: 40px;
       height: 50px;
